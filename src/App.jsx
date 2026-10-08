@@ -1,122 +1,111 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import Cabecalho from "./components/Cabecalho";
+import CardCurso from "./components/CardCurso";
+import Destaque from "./components/Destaque";
+import Rodape from "./components/Rodape";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const cursos = [
+  {
+    id: 1,
+    nome: "Desenvolvimento de Sistemas",
+    duracao: "1200 horas",
+    modalidade: "Presencial",
+    nivel: "Técnico",
+    vagas: 12
+  },
+  {
+    id: 2,
+    nome: "Redes de Computadores",
+    duracao: "800 horas",
+    modalidade: "EAD",
+    nivel: "Técnico",
+    vagas: 0
+  },
+  {
+    id: 3,
+    nome: "Manutenção de Computadores",
+    duracao: "160 horas",
+    modalidade: "Presencial",
+    nivel: "Qualificação",
+    vagas: 5
+  },
+  {
+    id: 4,
+    nome: "Programação Web",
+    duracao: "240 horas",
+    modalidade: "EAD",
+    nivel: "Aperfeiçoamento",
+    vagas: 20
+  },
+  {
+    id: 5,
+    nome: "Banco de Dados",
+    duracao: "120 horas",
+    modalidade: "EAD",
+    nivel: "Aperfeiçoamento",
+    vagas: 0
+  },
+  {
+    id: 6,
+    nome: "Desenvolvimento Mobile",
+    duracao: "200 horas",
+    modalidade: "Presencial",
+    nivel: "Aperfeiçoamento",
+    vagas: 8
+  }
+];
 
+const destaques = [
+  {
+    id: 1,
+    titulo: "Aprenda fazendo",
+    texto: "Desenvolva projetos práticos durante toda a sua formação."
+  },
+  {
+    id: 2,
+    titulo: "Professores no mercado",
+    texto: "Aulas com profissionais atuantes na área de tecnologia."
+  },
+  {
+    id: 3,
+    titulo: "Certificação reconhecida",
+    texto: "Garanta seu certificado ao concluir o treinamento."
+  }
+];
+
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-container">
+      <Cabecalho />
 
-      <div className="ticks"></div>
+      <main className="conteudo-principal">
+        <section className="secao">
+          <h2>Nossos Cursos</h2>
+          <div className="grid-cursos">
+            {cursos.map((curso) => (
+              <CardCurso
+                key={curso.id}
+                nome={curso.nome}
+                duracao={curso.duracao}
+                modalidade={curso.modalidade}
+                nivel={curso.nivel}
+                vagas={curso.vagas}
+              />
+            ))}
+          </div>
+        </section>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section className="secao">
+          <h2>Diferenciais</h2>
+          <div className="grid-destaques">
+            {destaques.map((item) => (
+              <Destaque key={item.id} titulo={item.titulo} texto={item.texto} />
+            ))}
+          </div>
+        </section>
+      </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <Rodape />
+    </div>
+  );
 }
-
-export default App
